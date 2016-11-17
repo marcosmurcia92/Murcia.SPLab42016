@@ -1,0 +1,22 @@
+<head>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<div class="module form-module">
+  <div ng-show="!isAuthenticated" align=center>
+  </div>
+  <div ng-show="!isAuthenticated" class="form" align=center>
+    <form name="FormLogin" id="formLogin">
+    	<h2>Ingrese a su cuenta</h2>
+      	<input type="text" class="user" name="nombre" placeholder="User Name" ng-model="usuario.nombre" required=""/>
+		<input type="email" class="email" name="email" placeholder="Email" ng-model="usuario.email" required=""/> 
+		<input type="password" class="password" name="Password" placeholder="Password" ng-model="usuario.clave" required=""/>
+    </form>
+
+	<input type="button" ng-click="Guardar()" value="LOGIN"></button>
+	<button  ng-click="IngresoAdmin()">Ingresar Como Admin</button>
+	<button  ng-click="IngresoVendedor()">Ingresar Como Vendedor</button>
+	<button  ng-click="IngresoComprador()">Ingresar Como Comprador</button>
+	
+</div>
