@@ -1,20 +1,29 @@
 angular.module('app.controllers')
 
-.controller('altaUsuariosCtrl', function($scope, $state, $timeout, UsuarioActual, SrvUsuarios){
+.controller('altaUsuariosCtrl', function($scope, $state, $timeout,FileUploader, UsuarioActual, SrvUsuarios){
+	
+	$scope.SubidorDeArchivos=new FileUploader({url:SrvUsuarios.traerUrlFotos()});
+  	$scope.SubidorDeArchivos.queueLimit = 1;
 
 	$scope.usuario = JSON.parse(UsuarioActual.getFullData());
 
 	$scope.user = {};
+	$scope.user.foto = "sin foto";
 
 	$scope.user.tipo = 'invalido';
 
-	$scope.Guardar = function(){
+	$scope.SubidorDeArchivos.onSuccessItem=function(item, response, status, headers)
+	  {
+		console.info("Ya guardé el archivo.", item, response, status, headers);
+	  };
 
+	  $scope.SubidorDeArchivos.onCompleteAll =function()
+	  {
 		var user = JSON.stringify($scope.user);
 
 		console.info("user", $scope.user);
 
-		SrvUsuarios.insertarUsuario(user)
+	  	SrvUsuarios.insertarUsuario(user)
 			.then(function (respuesta){
 
 				console.info("respuesta", respuesta);
@@ -24,6 +33,18 @@ angular.module('app.controllers')
 			}).catch(function (error){
 				console.info("error", error);
 			})
+	  };
+
+	$scope.Guardar = function(){
+
+		console.log($scope.SubidorDeArchivos.queue);
+		if($scope.SubidorDeArchivos.queue[0]!=undefined)
+		{
+			var nombreFoto = $scope.SubidorDeArchivos.queue[0]._file.name;
+			$scope.user.foto=nombreFoto;
+		}
+
+		$scope.SubidorDeArchivos.uploadAll();
 
 	}
 

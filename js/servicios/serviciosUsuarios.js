@@ -10,6 +10,8 @@ angular
 
 		this.modificarUsuario = ModificarUsuario;
 
+		this.traerUrlFotos = TraerUrlFotos;
+
 		console.log("rutaUser", factoryRutas.RutaUsuarios);
 
 		var url = factoryRutas.RutaUsuarios;
@@ -85,6 +87,10 @@ angular
 
 				})
 
+		};
+
+		function TraerUrlFotos(){
+			return factoryRutas.RutaFotos;
 		};
 
 		

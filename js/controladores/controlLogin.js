@@ -4,9 +4,9 @@ angular.module('app.controllers', [])
 
 	$scope.usuario = {};
 
-	$scope.usuario.nombre = "nombreComprador";
-	$scope.usuario.email = "comprador@comprador.com";
-	$scope.usuario.clave = "1234";
+	$scope.usuario.nombre = "comprador";
+	$scope.usuario.correo = "comp@comp.com";
+	$scope.usuario.clave = "123";
 
 	if ($auth.isAuthenticated()){
 		console.info("getToken", $auth.getToken());
@@ -17,22 +17,22 @@ angular.module('app.controllers', [])
 	}
 
 	$scope.IngresoComprador = function(){
-		$scope.usuario.nombre = "nombreComprador";
-		$scope.usuario.email = "comprador@comprador.com";
-		$scope.usuario.clave = "1234";
+		$scope.usuario.nombre = "comprador";
+		$scope.usuario.correo = "comp@comp.com";
+		$scope.usuario.clave = "123";
 	}
 
 
 	$scope.IngresoVendedor = function(){
-		$scope.usuario.nombre = "nombreVendedor";
-		$scope.usuario.email = "vendedor@vendedor.com";
-		$scope.usuario.clave = "1234";
+		$scope.usuario.nombre = "vend";
+		$scope.usuario.correo = "vend@vend.com";
+		$scope.usuario.clave = "321";
 	}
 
 	$scope.IngresoAdmin = function(){
-		$scope.usuario.nombre = "nombreAdministrador";
-		$scope.usuario.email = "administrador@administrador.com";
-		$scope.usuario.clave = "1234";
+		$scope.usuario.nombre = "admin";
+		$scope.usuario.correo = "admin@admin.com";
+		$scope.usuario.clave = "321";
 	}
 
 	$scope.Guardar=function(){
@@ -49,11 +49,11 @@ angular.module('app.controllers', [])
 	    console.info("correcto", response); //Sabemos que nos devuelve un token correcto SOLO CON EL ISAUTHENTICATED
 	    if ($auth.isAuthenticated()){
 	    	console.info("token", $auth.getPayload());
-	    	UsuarioActual.login($auth.getPayload().nombre, $auth.getPayload().email,  $auth.getPayload().tipo);
+	    	UsuarioActual.login($auth.getPayload().nombre, $auth.getPayload().correo,  $auth.getPayload().tipo,$auth.getPayload().foto);
 	    	$rootScope.userActual = JSON.parse(UsuarioActual.getFullData());
 	    	$rootScope.userActual.login = true;
 	    	console.log($rootScope.userActual);
-	    	$state.go('bienvenida');
+	    	$state.go('inicio');
 	    }
 	    else
 	    	console.info("no token", $auth.getPayload());

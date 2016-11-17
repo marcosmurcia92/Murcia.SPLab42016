@@ -39,6 +39,7 @@ angular.module('app.controllers')
     $scope.gridOptions.paginationPageSizes = [25, 50, 75];
     // Configuracion de la paginacion
     $scope.gridOptions.paginationPageSize = 25;
+    $scope.gridOptions.rowHeight = 100;
     $scope.gridOptions.columnDefs = columnDefs();
 
     console.log($scope.gridOptions.columnDefs);
@@ -98,7 +99,10 @@ angular.module('app.controllers')
     function columnDefs () {
       return [
         { field: 'nombre', name: 'nombre'},
-        { field: 'email', name: 'email'},
+        { field: 'foto', name: 'foto',minWidth: 70, 
+          cellTemplate:"<img width=\"60px\" ng-src=\"img/{{grid.getCellValue(row, col)}}\" lazy-src>"
+        },
+        { field: 'correo', name: 'correo'},
         { field: 'tipo', name: 'tipo'
           ,filter: {
             // term: '1',
@@ -118,7 +122,7 @@ angular.module('app.controllers')
           , enableFiltering: false
         },
         { field: 'modificar', name: 'modificar'
-          ,cellTemplate:'<button ui-sref="modificarUsuarios({id:row.entity.id, nombre:row.entity.nombre, email:row.entity.email, clave:row.entity.clave, tipo:row.entity.tipo})" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-erase">&nbsp;Modificar</i></button>'
+          ,cellTemplate:'<button ui-sref="modificarUsuarios({id:row.entity.id, nombre:row.entity.nombre, correo:row.entity.correo, clave:row.entity.clave, tipo:row.entity.tipo})" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-erase">&nbsp;Modificar</i></button>'
           , enableFiltering: false
         },
       ];

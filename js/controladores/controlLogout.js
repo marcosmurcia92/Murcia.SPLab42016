@@ -11,6 +11,7 @@ angular.module('app.controllers')
 		$rootScope.userActual = {};
 		$rootScope.userActual.login = false;
 		$rootScope.userActual.nombre = "No Logueado";
+		$rootScope.userActual.foto = "sin foto";
 
 		$state.go('log.login');
 

@@ -102,7 +102,7 @@ angular.module('app.controllers')
     function columnDefs () {
       return [
         { field: 'nombre', name: 'nombre', height:45},
-        { field: 'precio', name: 'precio'},
+        { field: 'porcentaje', name: 'porcentaje'},
         { field: 'borrar', name: 'borrar'
           ,cellTemplate:'<button ng-click="grid.appScope.Borrar(row.entity)" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash">&nbsp;Borrar</i></button>'
           ,visible: true

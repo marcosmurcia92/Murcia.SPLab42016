@@ -12,9 +12,9 @@
           <span id="lblNombre" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.nombre.$error.required'>* El nombre es requerido</span></label>
 
 
-          <br><label for="precio">Precio:
-          <input type="number" id="precio" name="precio" ng-model="producto.precio" placeholder="ingrese precio" value="" required />
-          <span id="lblPrecio" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.precio.$error.required'>* El precio es requerido</span></label>
+          <br><label for="porcentaje">Porcentaje:
+          <input type="number" id="porcentaje" name="porcentaje" ng-model="producto.porcentaje" placeholder="ingrese porcentaje" value="" required />
+          <span id="lblPorcentaje" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.porcentaje.$error.required'>* El porcentaje es requerido</span></label>
         </fieldset>
 
         <button ng-disabled="FormIngreso.$invalid" name="guardar" ng-click="Guardar()">Guardar</button>

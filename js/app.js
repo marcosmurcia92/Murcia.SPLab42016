@@ -5,6 +5,7 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 	$rootScope.userActual = {};
 	$rootScope.userActual.login = false;
 	$rootScope.userActual.nombre = "No Logueado";
+	$rootScope.userActual.foto = "sin foto";
 
 })
 
@@ -12,7 +13,7 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 .config(function ($stateProvider, $urlRouterProvider, $authProvider){
 
 	$authProvider.loginUrl ="Murcia.SPLab42016/ws1/servidor/jwt/php/auth.php";
-	$authProvider.tokenName = "MiTokenGeneradoEnPHP";
+	$authProvider.tokenName = "segundoparcial";
 	$authProvider.tokenPrefix="Aplicacion";
 	$authProvider.authHeader="data";
 
@@ -58,7 +59,7 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 		})
 
 		.state("modificarUsuarios", {
-			url:"/modificarUsuarios/{id}?:nombre:email:clave:tipo",
+			url:"/modificarUsuarios/{id}?:nombre:correo:clave:tipo",
 			templateUrl: "altaUsuarios.html",
 			controller:"modificarUsuariosCtrl"
 		})
