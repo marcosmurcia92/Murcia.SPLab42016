@@ -1,11 +1,23 @@
 angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagination', 'ui.grid.resizeColumns', 'ui.grid.selection', 'ui.grid.exporter', 'ui.grid.edit', 'angularFileUpload', 'satellizer'])
 
-.run(function($rootScope){
+.run(function($rootScope,$auth,UsuarioActual){
 
 	$rootScope.userActual = {};
-	$rootScope.userActual.login = false;
-	$rootScope.userActual.nombre = "No Logueado";
-	$rootScope.userActual.foto = "sin foto";
+
+	if($auth.isAuthenticated()){
+		console.info("payload",$auth.getPayload());
+		console.info("token",$auth.getToken());
+		$rootScope.userActual.login = true;
+		$rootScope.userActual.nombre = $auth.getPayload().nombre;
+		$rootScope.userActual.foto = $auth.getPayload().foto;
+		$rootScope.userActual.tipo = $auth.getPayload().tipo;
+		UsuarioActual.login($auth.getPayload().nombre, $auth.getPayload().correo,  $auth.getPayload().tipo,$auth.getPayload().foto);	
+	}else{
+		$rootScope.userActual.login = false;
+		$rootScope.userActual.nombre = "No Logueado";
+		$rootScope.userActual.foto = "sin foto";
+		$rootScope.userActual.tipo = "";
+	}
 
 })
 
@@ -82,7 +94,7 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 			controller:"directivasCtrl"
 		})
 
-	//$urlRouterProvider.otherwise("/inicio");
+	$urlRouterProvider.otherwise("/inicio");
 
 })
 

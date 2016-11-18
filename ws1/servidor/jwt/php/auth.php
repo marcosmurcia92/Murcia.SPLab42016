@@ -21,7 +21,7 @@ if (!is_null($usuarioActual)) {
 	$token["correo"] = $usuarioActual->correo;
 	$token["foto"] = $usuarioActual->foto;
 	$token["iat"]=time();
-	$token["exp"]=time()+20;
+	$token["exp"]=time()+200;
 
 	$jwt = JWT::encode($token, $key);
 
